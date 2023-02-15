@@ -10,6 +10,9 @@ inputs:
   kubeconfig:
     description: 'The full helm command to run (including helm)'
     required: false
+  version:
+    description: 'Helm version'
+    required: false
 runs:
   using: 'node16'
   main: 'main.js'
