@@ -51,7 +51,7 @@ async function main() {
         }
     );
     console.log("\033[36mPreparing helm execution\033[0m");
-    console.log(process.env.INPUT_VERSION);
+
     fs.appendFileSync(
         execShFile.name,
         '#!/bin/bash\n' +
@@ -98,6 +98,7 @@ async function main() {
         });
         fs.appendFileSync(process.env.GITHUB_OUTPUT, 'helm_output=' + result.trim().split('%').join('%25').split('\n').join('%0A').split('\r').join('%0D') + '\n');
     } catch (error) {
+        console.log(error);
         process.exit(1);
     } finally {
         console.log("\033[36mCleaning up: \033[0m");
@@ -109,6 +110,8 @@ async function main() {
             console.log("\033[36m  - kubeconfig ✅ \033[0m");
         }
     }
+    console.log('GITHUB_OUTPUT')
+    console.log(process.env.GITHUB_OUTPUT)
 }
 
 main();
